@@ -22,7 +22,7 @@ namespace shurlx::Database
     using namespace sqlite_orm;
 
     static bool s_Initialized = false;
-    static auto s_DbStorage = make_storage(":memory",
+    static auto s_DbStorage = make_storage(":memory:",
         make_table("URLs",
             make_column("ShortenedURL", &URLData::ShortenedURL, primary_key(), unique()),
             make_column("OriginalURL", &URLData::OriginalURL),
