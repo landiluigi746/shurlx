@@ -21,9 +21,16 @@ include(FetchContent)
 FetchContent_Declare(
     httplib
     GIT_REPOSITORY https://github.com/yhirose/cpp-httplib.git
-    GIT_TAG v0.20.0
+    GIT_TAG master
+)
+
+FetchContent_Declare(
+    sqlite_orm
+    GIT_REPOSITORY https://github.com/fnc12/sqlite_orm.git
+    GIT_TAG master
 )
 
 FetchContent_MakeAvailable(httplib)
+FetchContent_MakeAvailable(sqlite_orm)
 
 add_subdirectory(src)

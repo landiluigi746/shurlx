@@ -1,4 +1,5 @@
 #include <httplib.h>
+#include <sqlite_orm/sqlite_orm.h>
 
 int main()
 {

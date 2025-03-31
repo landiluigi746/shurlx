@@ -8,6 +8,7 @@ target_include_directories(shurlx PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 target_link_libraries(
     shurlx
     PRIVATE httplib::httplib
+    PRIVATE sqlite_orm::sqlite_orm
 )
 
 set(OPTIONS_WARNINGS -Wall -Wpedantic)
