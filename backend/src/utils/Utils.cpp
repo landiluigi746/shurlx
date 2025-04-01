@@ -2,19 +2,18 @@
 
 #include <chrono>
 #include <random>
-#include <regex>
 #include <string_view>
+#include <ada.h>
 
 namespace shurlx::Utils
 {
-    static const std::regex URL_PATTERN(R"((http|https)://([a-zA-Z0-9\-\.]+)(:[0-9]+)?(/.*)?)");
     static constexpr std::string_view RANDOM_ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     static std::default_random_engine s_RandEngine(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 
     bool IsURLValid(const std::string& url)
     {
-        return std::regex_match(url, URL_PATTERN);
+        return (bool) ada::parse(url);
     }
 
     std::string RandomString(size_t n)

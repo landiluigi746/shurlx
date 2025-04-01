@@ -9,6 +9,7 @@ target_link_libraries(
     shurlx
     PRIVATE httplib::httplib
     PRIVATE sqlite_orm::sqlite_orm
+    PRIVATE ada::ada
 )
 
 set(OPTIONS_WARNINGS -Wall -Wpedantic)

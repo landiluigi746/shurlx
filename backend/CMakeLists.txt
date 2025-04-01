@@ -30,7 +30,14 @@ FetchContent_Declare(
     GIT_TAG master
 )
 
+FetchContent_Declare(
+    ada
+    GIT_REPOSITORY https://github.com/ada-url/ada.git
+    GIT_TAG main
+)
+
 FetchContent_MakeAvailable(httplib)
 FetchContent_MakeAvailable(sqlite_orm)
+FetchContent_MakeAvailable(ada)
 
 add_subdirectory(src)
