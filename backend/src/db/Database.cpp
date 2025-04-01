@@ -52,7 +52,7 @@ namespace shurlx::Database
         if(!s_Initialized)
             return std::nullopt;
 
-        if(auto matches = s_DbStorage.select(&URLData::ShortenedURL, where(c(&URLData::ShortenedURL) == shortenedURL)); !matches.empty())
+        if(auto matches = s_DbStorage.select(&URLData::OriginalURL, where(c(&URLData::ShortenedURL) == shortenedURL)); !matches.empty())
             return matches[0];
 
         return std::nullopt;
