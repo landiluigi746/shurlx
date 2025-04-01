@@ -3,6 +3,10 @@
 
 #include <httplib.h>
 
+#ifndef ORIGIN
+#define ORIGIN "http://localhost"
+#endif
+
 int main()
 {
     shurlx::Database::Init();
@@ -10,7 +14,7 @@ int main()
     httplib::Server svr;
 
     auto setCorsHeaders = [](httplib::Response& res) {
-        res.set_header("Access-Control-Allow-Origin", "http://localhost");
+        res.set_header("Access-Control-Allow-Origin", ORIGIN);
         res.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept, Origin, Authorization");
         res.set_header("Access-Control-Allow-Methods", "OPTIONS, GET, POST, HEAD");
     };

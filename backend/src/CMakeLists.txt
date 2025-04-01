@@ -34,3 +34,7 @@ endif()
 if(DEFINED ENV{MAX_RAND_LEN_STR})
     target_compile_definitions(shurlx PRIVATE MAX_RAND_LEN_STR=ENV{MAX_RAND_LEN_STR})
 endif()
+
+if(DEFINED ENV{ORIGIN})
+    target_compile_definitions(shurlx PRIVATE ORIGIN=ENV{ORIGIN})
+endif()

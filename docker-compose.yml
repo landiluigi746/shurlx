@@ -8,6 +8,7 @@ services:
         BUILD_TYPE: ${BUILD_TYPE}
         MAX_URL_TIME: ${MAX_URL_TIME}
         MAX_RAND_STR_LEN: ${MAX_RAND_STR_LEN}
+        ORIGIN: ${ORIGIN}
     ports:
       - "8080:8080"
 

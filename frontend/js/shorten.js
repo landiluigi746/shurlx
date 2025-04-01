@@ -3,6 +3,8 @@ const urlInput = document.getElementById("url-input");
 const resultText = document.getElementById("result-text");
 const shortenedURLText = document.getElementById("shortenedURL-text");
 
+const BACKEND_URL = "http://localhost:8080";
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -10,7 +12,7 @@ form.addEventListener("submit", (event) => {
 
   resultText.style.display = "block";
 
-  fetch("http://localhost:8080" + `?url=${url}`, {
+  fetch(`${BACKEND_URL}?url=${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "text/plain",
@@ -38,8 +40,8 @@ form.addEventListener("submit", (event) => {
       }
     })
     .then((shortenedURL) => {
-      shortenedURLText.href = `http://localhost:8080/${shortenedURL}`;
-      shortenedURLText.innerText = `http://localhost:8080/${shortenedURL}`;
+      shortenedURLText.href = `${BACKEND_URL}/${shortenedURL}`;
+      shortenedURLText.innerText = `${BACKEND_URL}/${shortenedURL}`;
     })
     .catch((error) => {
       shortenedURLText.style.display = "none";
