@@ -3,22 +3,12 @@ const urlInput = document.getElementById("url-input");
 const resultText = document.getElementById("result-text");
 const shortenedURLText = document.getElementById("shortenedURL-text");
 
-console.log("stronzo");
-
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  console.log("cazzo");
 
   const url = urlInput.value;
 
   resultText.style.display = "block";
-
-  if (url === "" || url === undefined) {
-    resultText.innerHTML = "You have to put an URL!";
-    return;
-  }
-
-  console.log(url);
 
   fetch("http://localhost:8080" + `?url=${url}`, {
     method: "POST",
