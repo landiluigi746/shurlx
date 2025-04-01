@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css">
+        <title>shurlx</title>
+    </head>
+
+    <body>
+        <div id="page-content">
+            <div id="main-content">
+                <h1 class="title text centered-text">shurlx</h1>
+                <p class="paragraph text centered-text">Say goodbye to long URLs!</p>
+
+                <form id="url-form">
+                    <input type="url" class="text-input text" id="url-input" name="url-input" placeholder="https://store.steampowered.com/" required>
+                    <input type="submit" class="button text centered-text" value="Shorten URL">
+                </form>
+
+                <p class="paragraph text centered-text" id="result-text"></p>
+                <a class="link text centered-text" id="shortenedURL-text" target="_blank"></a>
+            </div>
+        </div>
+
+        <script src="js/shorten.js"></script>
+    </body>
+</html>

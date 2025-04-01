@@ -6,5 +6,15 @@ services:
       context: ./backend
       args:
         BUILD_TYPE: ${BUILD_TYPE}
+        MAX_URL_TIME: ${MAX_URL_TIME}
+        MAX_RAND_STR_LEN: ${MAX_RAND_STR_LEN}
     ports:
       - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
