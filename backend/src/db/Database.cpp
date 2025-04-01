@@ -24,8 +24,8 @@ namespace shurlx::Database
     static bool s_Initialized = false;
     static auto s_DbStorage = make_storage(":memory:",
         make_table("URLs",
-            make_column("ShortenedURL", &URLData::ShortenedURL, primary_key(), unique()),
-            make_column("OriginalURL", &URLData::OriginalURL),
+            make_column("OriginalURL", &URLData::OriginalURL, primary_key(), unique()),
+            make_column("ShortenedURL", &URLData::ShortenedURL),
             make_column("CreationDate", &URLData::CreationDate, default_value(date("now")))
         ));
 
@@ -52,8 +52,8 @@ namespace shurlx::Database
         if(!s_Initialized)
             return std::nullopt;
 
-        if(auto ptr = s_DbStorage.get_pointer<URLData>(shortenedURL); ptr)
-            return ptr->OriginalURL;
+        if(auto matches = s_DbStorage.select(&URLData::ShortenedURL, where(c(&URLData::ShortenedURL) == shortenedURL)); !matches.empty())
+            return matches[0];
 
         return std::nullopt;
     }
@@ -62,6 +62,9 @@ namespace shurlx::Database
     {
         if(!s_Initialized)
             return std::nullopt;
+
+        if(auto originalMatches = s_DbStorage.get_pointer<URLData>(originalURL))
+            return originalMatches->ShortenedURL;
 
         std::string shortenedURL;
 

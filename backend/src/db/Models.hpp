@@ -6,8 +6,8 @@ namespace shurlx
 {
     struct URLData
     {
-        std::string ShortenedURL;
         std::string OriginalURL;
+        std::string ShortenedURL;
         std::string CreationDate;
     };
 }
