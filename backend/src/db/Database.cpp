@@ -3,6 +3,7 @@
 #include "utils/Utils.hpp"
 
 #include <exception>
+#include <mutex>
 #include <optional>
 #include <print>
 #include <tuple>
@@ -22,6 +23,7 @@ namespace shurlx::Database
             make_column("ShortenedURL", &URLData::ShortenedURL),
             make_column("CreationDate", &URLData::CreationDate, default_value(date("now")))
         ));
+    static std::mutex s_DbMutex;
 
     bool Init()
     {
@@ -46,6 +48,7 @@ namespace shurlx::Database
         if(!s_Initialized)
             return std::nullopt;
 
+        std::lock_guard lock(s_DbMutex);
         if(auto matches = s_DbStorage.select(&URLData::OriginalURL, where(c(&URLData::ShortenedURL) == shortenedURL)); !matches.empty())
             return matches[0];
 
@@ -57,6 +60,7 @@ namespace shurlx::Database
         if(!s_Initialized)
             return std::nullopt;
 
+        std::lock_guard lock(s_DbMutex);
         if(auto originalMatches = s_DbStorage.get_pointer<URLData>(originalURL))
             return originalMatches->ShortenedURL;
 
@@ -92,6 +96,7 @@ namespace shurlx::Database
 
         try
         {
+            std::lock_guard lock(s_DbMutex);
             s_DbStorage.transaction([&]() {
                 s_DbStorage.remove_all<URLData>(where((datetime("now") - c(&URLData::CreationDate)) > MAX_URL_TIME));
                 return true;

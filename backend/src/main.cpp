@@ -3,14 +3,18 @@
 #include "utils/Utils.hpp"
 
 #include <httplib.h>
+#include <print>
+#include <thread>
 
 int main()
 {
-    shurlx::Database::Init();
+    if(!shurlx::Database::Init())
+        return 1;
 
     httplib::Server svr;
 
     const std::string ORIGIN = shurlx::Utils::GetEnv("ORIGIN", "http://localhost");
+    const auto MAX_URL_TIME = std::stoi(shurlx::Utils::GetEnv("MAX_URL_TIME", "86400"));
 
     auto setCorsHeaders = [&](httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin", ORIGIN);
@@ -36,6 +40,13 @@ int main()
     svr.Get("/:url", [&] (const httplib::Request& req, httplib::Response& res) {
         setCorsHeaders(res);
         shurlx::API::RedirectHandler(req, res);
+    });
+
+    std::thread deleterThread([&] {
+        std::this_thread::sleep_for(std::chrono::seconds(MAX_URL_TIME));
+
+        if(!shurlx::Database::DeleteExpiredURLs())
+            std::println("Failed to delete expired URLs");
     });
 
     svr.listen("0.0.0.0", 8080);
