@@ -9,7 +9,13 @@ namespace shurlx::Utils
 {
     static constexpr std::string_view RANDOM_ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    static std::default_random_engine s_RandEngine(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+    static thread_local std::default_random_engine s_RandEngine(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+
+    std::string GetEnv(std::string_view varName, std::string_view defaultValue)
+    {
+        const char* val = std::getenv(varName.data());
+        return (val) ? std::string(val) : std::string(defaultValue);
+    }
 
     bool IsURLValid(const std::string& url)
     {

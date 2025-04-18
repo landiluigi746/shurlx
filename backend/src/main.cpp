@@ -1,11 +1,8 @@
 #include "api/Api.hpp"
 #include "db/Database.hpp"
+#include "utils/Utils.hpp"
 
 #include <httplib.h>
-
-#ifndef ORIGIN
-#define ORIGIN "http://localhost"
-#endif
 
 int main()
 {
@@ -13,7 +10,9 @@ int main()
 
     httplib::Server svr;
 
-    auto setCorsHeaders = [](httplib::Response& res) {
+    const std::string ORIGIN = shurlx::Utils::GetEnv("ORIGIN", "http://localhost");
+
+    auto setCorsHeaders = [&](httplib::Response& res) {
         res.set_header("Access-Control-Allow-Origin", ORIGIN);
         res.set_header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept, Origin, Authorization");
         res.set_header("Access-Control-Allow-Methods", "OPTIONS, GET, POST, HEAD");

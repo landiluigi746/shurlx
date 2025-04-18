@@ -27,15 +27,3 @@ endif()
 message(STATUS "Compiler options: ${OPTIONS_WARNINGS} ${OPTIONS_OPTIMIZATION}")
 
 target_compile_options(shurlx PRIVATE ${OPTIONS_WARNINGS} ${OPTIONS_OPTIMIZATION})
-
-if(DEFINED ENV{MAX_URL_TIME})
-    target_compile_definitions(shurlx PRIVATE MAX_URL_TIME=ENV{MAX_URL_TIME})
-endif()
-
-if(DEFINED ENV{MAX_RAND_LEN_STR})
-    target_compile_definitions(shurlx PRIVATE MAX_RAND_LEN_STR=ENV{MAX_RAND_LEN_STR})
-endif()
-
-if(DEFINED ENV{ORIGIN})
-    target_compile_definitions(shurlx PRIVATE ORIGIN=ENV{ORIGIN})
-endif()

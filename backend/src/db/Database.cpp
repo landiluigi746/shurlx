@@ -8,18 +8,12 @@
 #include <tuple>
 #include <sqlite_orm/sqlite_orm.h>
 
-#ifndef MAX_URL_TIME
-#define MAX_URL_TIME 86400
-#endif
-
-#ifndef MAX_RAND_STR_LEN
-#define MAX_RAND_STR_LEN 6
-#endif
-
-
 namespace shurlx::Database
 {
     using namespace sqlite_orm;
+
+    static const auto MAX_URL_TIME = std::stoi(Utils::GetEnv("MAX_URL_TIME", "86400"));
+    static const auto MAX_RAND_STR_LEN = std::stoi(Utils::GetEnv("MAX_RAND_STR_LEN", "6"));
 
     static bool s_Initialized = false;
     static auto s_DbStorage = make_storage(":memory:",
