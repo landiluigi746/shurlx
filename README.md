@@ -32,3 +32,5 @@ docker-compose up --build -d
 ```
 
 Now you can access the frontend at <http://localhost> and backend at <http://localhost:8080>
+
+![frontend](screenshots/frontend.png)
