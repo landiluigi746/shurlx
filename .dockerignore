@@ -10,5 +10,7 @@ out
 CMakeSettings.json
 vcpkg-configuration.json
 
+.clang-format
+
 .env
 .gitignore
