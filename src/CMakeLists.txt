@@ -28,6 +28,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
     set(OPTIONS_OPTIMIZATION -Os)
 endif()
 
+message(STATUS "Build type:" ${CMAKE_BUILD_TYPE})
 message(STATUS "Compiler options: ${OPTIONS_WARNINGS} ${OPTIONS_OPTIMIZATION}")
 
 target_compile_options(${PROJECT_NAME} PRIVATE ${OPTIONS_WARNINGS} ${OPTIONS_OPTIMIZATION})

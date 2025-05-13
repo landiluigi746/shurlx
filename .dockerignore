@@ -11,3 +11,4 @@ CMakeSettings.json
 vcpkg-configuration.json
 
 .env
+.gitignore

@@ -9,7 +9,7 @@ int main()
         return "Hello world!";
     });
 
-    app.port(8080).multithreaded().run();
+    app.port(std::stoi(std::getenv("PORT"))).multithreaded().run();
 
     return 0;
 }
