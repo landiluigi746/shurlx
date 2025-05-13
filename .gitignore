@@ -5,7 +5,7 @@
 vendor/*
 !vendor/CMakeLists.txt
 
-build-*
+build*
 bin
 lib
 out
