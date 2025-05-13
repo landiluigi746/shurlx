@@ -1,0 +1,13 @@
+.vs
+.vscode
+.cache
+
+vendor/*
+!vendor/CMakeLists.txt
+
+build-*
+bin
+lib
+out
+
+CMakeSettings.json
