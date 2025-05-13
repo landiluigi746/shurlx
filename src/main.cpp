@@ -1,7 +1,11 @@
 #include "crow.h"
 
+#include "utils/Utils.hpp"
+
 int main()
 {
+    const auto PORT = std::stoi(Utils::GetEnv("PORT", "8000"));
+
     crow::SimpleApp app;
 
     CROW_ROUTE(app, "/")
@@ -9,7 +13,7 @@ int main()
         return "Hello world!";
     });
 
-    app.port(std::stoi(std::getenv("PORT"))).multithreaded().run();
+    app.port(PORT).multithreaded().run();
 
     return 0;
 }
