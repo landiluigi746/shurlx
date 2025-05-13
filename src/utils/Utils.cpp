@@ -7,4 +7,4 @@ namespace Utils
         const char* val = std::getenv(varName.data());
         return (val && val[0] != '\0') ? std::string(val) : std::string(defaultValue);
     }
-}
+} // namespace Utils
