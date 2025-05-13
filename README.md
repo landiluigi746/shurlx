@@ -7,8 +7,24 @@ It also provides already defined Microsoft-like formatting options with clang-fo
 
 To use this template you need:
 
-- a C++ compiler (C++23 is used out of box, edit [CMake config](CMakeLists.txt) if you want to use a different standard)
+- a C++ compiler (C++23 is used by default, edit [CMake config](CMakeLists.txt) if you want to use a different standard)
 - CMake (3.14.0 >=)
 - vcpkg
 - Docker
-- clang-format (optional)
+- clang-format (optional, used to format code)
+
+## Getting started
+
+To get started with this template, either clone it or generate a new repo from this one.
+Then, create a ```.env``` file with env variables.
+Example:
+
+```bash
+PORT=8000
+BUILD_TYPE=Release # options are Debug, Release, RelWithDebInfo and MinSizeRel 
+```
+
+Finally, start the docker container with docker compose:
+```bash
+docker compose up --build -d
+```
