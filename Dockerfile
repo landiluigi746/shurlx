@@ -22,6 +22,6 @@ WORKDIR /app
 COPY --from=builder /app/bin/cpp-backend-template .
 COPY --from=builder /usr/lib/* /usr/lib/
 
-EXPOSE 8080
+EXPOSE ${PORT}
 
 CMD ["./cpp-backend-template"]
