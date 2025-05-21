@@ -19,9 +19,10 @@ RUN cmake --build build --parallel $(nproc)
 FROM alpine:latest
 
 WORKDIR /app
-COPY --from=builder /app/bin/cpp-backend-template .
+COPY --from=builder /app/views/* ./views/
+COPY --from=builder /app/bin/shurlx .
 COPY --from=builder /usr/lib/* /usr/lib/
 
 EXPOSE ${PORT}
 
-CMD ["./cpp-backend-template"]
+CMD ["./shurlx"]

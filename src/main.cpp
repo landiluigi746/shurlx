@@ -9,8 +9,9 @@ int main()
     crow::SimpleApp app;
 
     CROW_ROUTE(app, "/")
-    ([] {
-        return "Hello world!";
+    ([](const crow::request& req, crow::response& res) {
+        res.set_static_file_info("views/index.html");
+        res.end();
     });
 
     app.port(PORT).multithreaded().run();

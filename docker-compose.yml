@@ -1,5 +1,5 @@
 services:
-  cpp-backend-template:
+  shurlx:
     build:
       context: .
     restart: unless-stopped
