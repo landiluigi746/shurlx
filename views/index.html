@@ -2,14 +2,17 @@
 <html>
     <head>
         <script src="/static/js/htmx.min.js"></script>
+        <script src="/static/js/tailwind.min.js"></script>
         <title>Test</title>
     </head>
 
     <body>
-        <h1>Test</h1>
+        <div class="min-h-screen flex flex-col items-center justify-center gap-4">
+            <h1 class="text-4xl font-bold">Test</h1>
 
-        <button hx-post="/click" hx-swap="outerHTML">
-            Click me
-        </button>
+            <button hx-post="/click" hx-swap="outerHTML" class="rounded-2xl px-3 py-1 outline outline-black cursor-pointer">
+                Click me
+            </button>
+        </div>
     </body>
 </html>
