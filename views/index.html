@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="/static/js/htmx.min.js"></script>
         <title>Test</title>
     </head>
 
     <body>
         <h1>Test</h1>
+
+        <button hx-post="/click" hx-swap="outerHTML">
+            Click me
+        </button>
     </body>
 </html>

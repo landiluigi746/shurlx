@@ -14,6 +14,10 @@ int main()
         res.end();
     });
 
+    CROW_ROUTE(app, "/click").methods("POST"_method)([](const crow::request& req, crow::response& res) {
+        res.end("<h3>You clicked!</h3>");
+    });
+
     app.port(PORT).multithreaded().run();
 
     return 0;

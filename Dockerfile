@@ -19,9 +19,10 @@ RUN cmake --build build --parallel $(nproc)
 FROM alpine:latest
 
 WORKDIR /app
-COPY --from=builder /app/views/* ./views/
+COPY --from=builder /app/views/ ./views/
+COPY --from=builder /app/static/ ./static/
 COPY --from=builder /app/bin/shurlx .
-COPY --from=builder /usr/lib/* /usr/lib/
+COPY --from=builder /usr/lib/ /usr/lib/
 
 EXPOSE ${PORT}
 
