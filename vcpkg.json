@@ -3,6 +3,8 @@
     "asio",
     "crow",
     "openssl",
-    "zlib"
+    "sqlite-orm",
+    "zlib",
+    "sqlite3"
   ]
 }
