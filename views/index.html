@@ -1,18 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
         <script src="/static/js/htmx.min.js"></script>
         <script src="/static/js/tailwind.min.js"></script>
-        <title>Test</title>
+        <link rel="stylesheet" href="/static/css/global.css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>shurlx</title>
     </head>
 
     <body>
-        <div class="min-h-screen flex flex-col items-center justify-center gap-4">
-            <h1 class="text-4xl font-bold">Test</h1>
+        <div class="min-h-screen flex flex-col items-center justify-center">
+            <div
+                class="sm:max-w-2xl w-full flex flex-col items-center justify-center gap-6 px-8 py-6 rounded-2xl drop-shadow-2xl bg-linear-to-br from-zinc-50 to-white"
+            >
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <h1 class="text-7xl font-inter font-extrabold">shurlx</h1>
+                    <p class="text-xl text-zinc-800 font-inter">
+                        Say goodbye to long URLs!
+                    </p>
+                </div>
 
-            <button hx-post="/click" hx-swap="outerHTML" class="rounded-2xl px-3 py-1 outline outline-black cursor-pointer">
-                Click me
-            </button>
+                <form
+                    class="w-full flex flex-col items-center justify-center gap-4"
+                >
+                    <input
+                        type="url"
+                        placeholder="Enter URL"
+                        required
+                        autofocus
+                        class="w-full text-lg text-zinc-800 font-inter font-semibold rounded-lg px-3 py-1 transition-all bg-zinc-50 border border-zinc-300 focus:border-green-600 focus:outline-none"
+                    />
+                    <button
+                        type="submit"
+                        class="text-lg text-zinc-50 font-inter font-semibold rounded-lg px-3 py-1 transition-all bg-linear-to-br from-green-700 to-green-600 hover:cursor-pointer hover:scale-110 hover:bg-linear-to-tl hover:from-green-800 hover:to-green-700"
+                    >
+                        Shorten
+                    </button>
+                </form>
+            </div>
         </div>
     </body>
 </html>
