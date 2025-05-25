@@ -22,6 +22,8 @@
                 </div>
 
                 <form
+                    hx-post="/click"
+                    hx-target="#result"
                     class="w-full flex flex-col items-center justify-center gap-4"
                 >
                     <input
@@ -38,6 +40,7 @@
                         Shorten
                     </button>
                 </form>
+                <h3 id="result" class="fade-in fade-out"></h3>
             </div>
         </div>
     </body>

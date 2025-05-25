@@ -16,7 +16,7 @@ int main()
     });
 
     CROW_ROUTE(app, "/click").methods("POST"_method)([](const crow::request& req, crow::response& res) {
-        res.end("<h3>You clicked!</h3>");
+        res.end("<h3 id=\"result\" class=\"fade-in fade-out\">You clicked!</h3>");
     });
 
     app.port(PORT).multithreaded().run();

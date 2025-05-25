@@ -8,3 +8,17 @@ body {
 .font-inter {
     font-family: "Inter", sans-serif;
 }
+
+.fade-in.htmx-added {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+}
+
+.fade-out.htmx-swapping {
+    opacity: 0;
+    transition: opacity 0.45s ease-out;
+}
