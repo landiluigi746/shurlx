@@ -14,6 +14,7 @@ target_link_libraries(
     ZLIB::ZLIB
     OpenSSL::SSL
     Crow::Crow
+    sqlite_orm::sqlite_orm
 )
 
 set(OPTIONS_WARNINGS -Wall -Wpedantic)

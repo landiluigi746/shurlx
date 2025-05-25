@@ -18,7 +18,7 @@ namespace shurlx::Database
     static thread_local auto s_DbStorage = make_storage(
         "shurlx.db",
         make_table("URLs",
-            make_column("original_url", &URLModel::OriginalURL, primary_key(), unique()),
+            make_column("original_url", &URLModel::OriginalURL, primary_key()),
             make_column("short_url", &URLModel::ShortURL, unique())
         )
     );
@@ -60,15 +60,16 @@ namespace shurlx::Database
             try
             {
                 s_DbStorage.transaction([&] mutable {
-                    s_DbStorage.insert(
-                        URLModel{.ShortURL = shortURL, .OriginalURL = std::string(originalURL)});
+                    s_DbStorage.insert(into<URLModel>(),
+                                       columns(&URLModel::ShortURL, &URLModel::OriginalURL),
+                                       values(std::make_tuple(shortURL, originalURL)));
                     return true;
                 });
                 return {Result::Success, std::move(shortURL)};
             }
             catch (const std::exception& e)
             {
-                std::println("[error]: Database::RegisterURL() :", e.what());
+                std::println("[error]: Database::RegisterURL() : ", e.what());
                 return {Result::Failure, ""};
             }
         }
@@ -92,7 +93,7 @@ namespace shurlx::Database
         }
         catch (const std::exception& e)
         {
-            std::println("[error]: Database::GetOriginalURL() :", e.what());
+            std::println("[error]: Database::GetOriginalURL() : ", e.what());
             return {Result::Failure, ""};
         }
     }

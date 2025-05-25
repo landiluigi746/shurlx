@@ -2,7 +2,7 @@ FROM csantve/alpine-vcpkg AS builder
 
 WORKDIR /app
 
-RUN apk add --no-cache linux-headers perl bash pkgconfig
+RUN apk add --no-cache linux-headers perl bash pkgconfig sqlite sqlite-dev
 
 COPY vcpkg.json .
 
@@ -13,7 +13,7 @@ COPY src/ ./src/
 
 RUN cmake -S . -B build \
     -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
-    -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
+    -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake
 
 RUN cmake --build build --parallel $(nproc)
 

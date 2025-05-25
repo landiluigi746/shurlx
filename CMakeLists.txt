@@ -19,5 +19,12 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 find_package(Crow REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
+find_package(SqliteOrm REQUIRED)
 
 add_subdirectory(src)
+
+if(RUN_TESTS)
+    message(STATUS "Testing enabled")
+    enable_testing()
+    add_subdirectory(tests)
+endif()

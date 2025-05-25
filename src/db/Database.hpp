@@ -6,8 +6,8 @@ namespace shurlx::Database
 {
     struct URLModel
     {
-        std::string ShortURL;
         std::string OriginalURL;
+        std::string ShortURL;
     };
 
     enum class Result
