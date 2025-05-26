@@ -35,7 +35,7 @@ namespace shurlx::API
             return;
         }
 
-        auto [result, shortURL] = Database::RegisterURL(url);
+        auto [result, shortCode] = Database::RegisterURL(url);
 
         switch (result)
         {
@@ -48,7 +48,7 @@ namespace shurlx::API
 
             case Database::Result::Success:
                 ctx["error"] = false;
-                ctx["shortURL"] = shortURL;
+                ctx["shortURL"] = shortCode;
                 break;
 
             default:

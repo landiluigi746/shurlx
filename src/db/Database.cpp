@@ -10,7 +10,7 @@ namespace shurlx::Database
 {
     using namespace sqlite_orm;
 
-    static const auto MAX_SHORT_URL_LEN = std::stoul(Utils::GetEnv("MAX_SHORT_URL_LEN", "4"));
+    static const auto MAX_SHORT_CODE_LEN = std::stoul(Utils::GetEnv("MAX_SHORT_CODE_LEN", "4"));
     static const auto MAX_REGISTER_ATTEMPTS = std::stoul(Utils::GetEnv("MAX_REGISTER_ATTEMPTS", "16"));
 
     // clang-format off
@@ -19,7 +19,7 @@ namespace shurlx::Database
         "shurlx.db",
         make_table("URLs",
             make_column("original_url", &URLModel::OriginalURL, primary_key()),
-            make_column("short_url", &URLModel::ShortURL, unique())
+            make_column("short_code", &URLModel::ShortCode, unique())
         )
     );
     // clang-format on
@@ -49,23 +49,23 @@ namespace shurlx::Database
             Init();
 
         if (auto existing = s_DbStorage.get_pointer<URLModel>(originalURL))
-            return {Result::Success, existing->ShortURL};
+            return {Result::Success, existing->ShortCode};
 
-        std::string shortURL;
+        std::string shortCode;
 
         for (unsigned long i = 0; i < MAX_REGISTER_ATTEMPTS; ++i)
         {
-            shortURL = Utils::GetRandomString(static_cast<size_t>(MAX_SHORT_URL_LEN));
+            shortCode = Utils::GetRandomString(static_cast<size_t>(MAX_SHORT_CODE_LEN));
 
             try
             {
                 s_DbStorage.transaction([&] mutable {
                     s_DbStorage.insert(into<URLModel>(),
-                                       columns(&URLModel::ShortURL, &URLModel::OriginalURL),
-                                       values(std::make_tuple(shortURL, originalURL)));
+                                       columns(&URLModel::ShortCode, &URLModel::OriginalURL),
+                                       values(std::make_tuple(shortCode, originalURL)));
                     return true;
                 });
-                return {Result::Success, std::move(shortURL)};
+                return {Result::Success, std::move(shortCode)};
             }
             catch (const std::exception& e)
             {
@@ -77,7 +77,7 @@ namespace shurlx::Database
         return {Result::TooManyAttempts, ""};
     }
 
-    std::pair<Result, std::string> GetOriginalURL(std::string_view shortURL)
+    std::pair<Result, std::string> GetOriginalURL(std::string_view shortCode)
     {
         if (!s_Initialized)
             Init();
@@ -85,7 +85,7 @@ namespace shurlx::Database
         try
         {
             // clang-format off
-            if (auto matches = s_DbStorage.select(&URLModel::OriginalURL, where(c(&URLModel::ShortURL) == shortURL)); !matches.empty())
+            if (auto matches = s_DbStorage.select(&URLModel::OriginalURL, where(c(&URLModel::ShortCode) == shortCode)); !matches.empty())
                 return {Result::Success, matches[0]};
 
             return {Result::NotFound, ""};

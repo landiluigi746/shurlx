@@ -8,5 +8,5 @@ services:
     environment:
       - PORT=${PORT}
       - BUILD_TYPE=${BUILD_TYPE}
-      - MAX_SHORT_URL_LEN=${MAX_SHORT_URL_LEN}
+      - MAX_SHORT_CODE_LEN=${MAX_SHORT_CODE_LEN}
       - MAX_REGISTER_ATTEMPTS=${MAX_REGISTER_ATTEMPTS}
