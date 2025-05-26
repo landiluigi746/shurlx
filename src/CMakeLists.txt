@@ -15,6 +15,7 @@ target_link_libraries(
     OpenSSL::SSL
     Crow::Crow
     sqlite_orm::sqlite_orm
+    ada::ada
 )
 
 set(OPTIONS_WARNINGS -Wall -Wpedantic)

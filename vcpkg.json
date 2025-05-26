@@ -4,6 +4,7 @@
     "crow",
     "openssl",
     "sqlite-orm",
-    "zlib"
+    "zlib",
+    "ada-url"
   ]
 }

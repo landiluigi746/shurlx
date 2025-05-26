@@ -2,6 +2,7 @@
 
 #include <random>
 #include <chrono>
+#include <ada.h>
 
 namespace Utils
 {
@@ -28,5 +29,10 @@ namespace Utils
             s.push_back(RANDOM_ALPHABET[distribution(s_RandEngine)]);
 
         return s;
+    }
+
+    bool IsURL(std::string_view url)
+    {
+        return static_cast<bool>(ada::parse<ada::url_aggregator>(url));
     }
 } // namespace Utils

@@ -20,6 +20,7 @@ find_package(Crow REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(SqliteOrm REQUIRED)
+find_package(ada REQUIRED)
 
 add_subdirectory(src)
 
