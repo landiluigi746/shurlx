@@ -22,3 +22,11 @@ body {
     opacity: 0;
     transition: opacity 0.45s ease-out;
 }
+
+.error {
+    color: red;
+}
+
+.url {
+    color: darkgreen;
+}

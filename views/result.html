@@ -1,0 +1,8 @@
+{{#error}}
+<h3 id="result" class="error font fade-in fade-out">{{message}}</h3>
+{{/error}}{{^error}}
+<div id="result" class="fade-in fade-out flex flex-row gap-1">
+    <h3 class="font">Your shortened url is: </h3>
+    <a href="{{shortURL}}" class="font url hover:underline">{{shortURL}}</a>
+</div>
+{{/error}}

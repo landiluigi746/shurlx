@@ -38,8 +38,8 @@ namespace shurlx::Database
         }
         catch (const std::exception& e)
         {
-            std::println("[error]: Database::Init() : ", e.what());
-            return Result::Failure;
+            std::println("[fatal]: Database::Init() : ", e.what());
+            std::abort();
         }
     }
 
