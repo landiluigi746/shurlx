@@ -1,5 +1,6 @@
 #include "db/Database.hpp"
 #include "utils/Utils.hpp"
+#include "Config.hpp"
 
 #include <sqlite_orm/sqlite_orm.h>
 #include <exception>
@@ -9,9 +10,6 @@
 namespace shurlx::Database
 {
     using namespace sqlite_orm;
-
-    static const auto MAX_SHORT_CODE_LEN = std::stoul(Utils::GetEnv("MAX_SHORT_CODE_LEN", "4"));
-    static const auto MAX_REGISTER_ATTEMPTS = std::stoul(Utils::GetEnv("MAX_REGISTER_ATTEMPTS", "16"));
 
     // clang-format off
     static thread_local bool s_Initialized = false;
@@ -53,9 +51,9 @@ namespace shurlx::Database
 
         std::string shortCode;
 
-        for (unsigned long i = 0; i < MAX_REGISTER_ATTEMPTS; ++i)
+        for (unsigned long i = 0; i < Config::MAX_REGISTER_ATTEMPTS; ++i)
         {
-            shortCode = Utils::GetRandomString(static_cast<size_t>(MAX_SHORT_CODE_LEN));
+            shortCode = Utils::GetRandomString(static_cast<size_t>(Config::MAX_SHORT_CODE_LEN));
 
             try
             {

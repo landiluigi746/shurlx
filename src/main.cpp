@@ -1,13 +1,12 @@
 #include <crow.h>
-#include <crow/mustache.h>
+#include <print>
 
 #include "api/API.hpp"
 #include "db/Database.hpp"
-#include "utils/Utils.hpp"
+#include "Config.hpp"
 
 int main()
 {
-    const auto PORT = std::stoi(Utils::GetEnv("PORT", "8000"));
     shurlx::Database::Init();
 
     crow::SimpleApp app;
@@ -21,7 +20,7 @@ int main()
 
     CROW_ROUTE(app, "/register").methods("POST"_method)(&shurlx::API::RegisterURL);
 
-    app.port(PORT).multithreaded().run();
+    app.port(shurlx::Config::PORT).multithreaded().run();
 
     return 0;
 }

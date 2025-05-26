@@ -1,10 +1,9 @@
 #include "api/API.hpp"
 #include "db/Database.hpp"
 #include "utils/Utils.hpp"
+#include "Config.hpp"
 
 #include <crow.h>
-#include <crow/mustache.h>
-#include <print>
 
 namespace shurlx::API
 {
@@ -48,7 +47,7 @@ namespace shurlx::API
 
             case Database::Result::Success:
                 ctx["error"] = false;
-                ctx["shortURL"] = shortCode;
+                ctx["shortURL"] = std::format("{}/{}", Config::BASE_URL, shortCode);
                 break;
 
             default:
