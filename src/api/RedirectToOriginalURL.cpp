@@ -4,7 +4,6 @@
 #include "Config.hpp"
 
 #include <crow.h>
-#include <print>
 
 namespace shurlx::API
 {
@@ -12,18 +11,21 @@ namespace shurlx::API
     {
         const auto [result, originalURL] = Database::GetOriginalURL(code);
 
-        std::println("{}", originalURL);
+        auto invalidHTML = crow::mustache::load("invalid.html");
+        crow::mustache::context ctx;
 
         switch (result)
         {
             case Database::Result::Failure:
+                ctx["message"] = "Failed to retrieve original URL due to an internal server error";
                 res.code = crow::status::INTERNAL_SERVER_ERROR;
-                res.end("Failed to retrieve original URL due to an internal server error");
+                res.end(invalidHTML.render(ctx).dump());
                 break;
 
             case Database::Result::NotFound:
+                ctx["message"] = "Couldn't find requested original URL";
                 res.code = crow::status::NOT_FOUND;
-                res.end("Couldn't find requested original URL");
+                res.end(invalidHTML.render(ctx).dump());
 
             case Database::Result::Success:
                 res.redirect_perm(originalURL);
@@ -31,8 +33,9 @@ namespace shurlx::API
                 break;
 
             default:
+                ctx["message"] = "How the fuck did you get this?";
                 res.code = crow::status::INTERNAL_SERVER_ERROR;
-                res.end("How the fuck did you get this?");
+                res.end(invalidHTML.render(ctx).dump());
         }
     }
 } // namespace shurlx::API

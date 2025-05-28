@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="htmx-config"
+            content='{"responseHandling": [{"code":".*", "swap": true}]}'
+        />
+        <script src="/static/js/htmx.min.js"></script>
+        <script src="/static/js/tailwind.min.js"></script>
+        <link rel="stylesheet" href="/static/css/global.css" />
+        <title>shurlx</title>
+    </head>
+
+    <body>
+        <div class="min-h-screen flex flex-col items-center justify-center">
+            <div
+                class="sm:max-w-2xl w-full flex flex-col items-center justify-center gap-6 px-8 py-6 rounded-2xl drop-shadow-2xl bg-linear-to-br from-zinc-50 to-white"
+            >
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <h1 class="text-7xl font-inter font-extrabold">shurlx</h1>
+                    <p class="text-xl text-red-600 font-inter">
+                        {{message}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
