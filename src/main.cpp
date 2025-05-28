@@ -19,6 +19,7 @@ int main()
     });
 
     CROW_ROUTE(app, "/register").methods("POST"_method)(&shurlx::API::RegisterURL);
+    CROW_ROUTE(app, "/<string>")(&shurlx::API::RedirectToOriginalURL);
 
     app.port(shurlx::Config::PORT).multithreaded().run();
 
