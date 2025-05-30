@@ -4,12 +4,13 @@
 #include "api/API.hpp"
 #include "db/Database.hpp"
 #include "Config.hpp"
+#include "middleware/RateLimiter.hpp"
 
 int main()
 {
     shurlx::Database::Init();
 
-    crow::SimpleApp app;
+    crow::App<shurlx::Middleware::RateLimiter> app;
     crow::mustache::set_global_base("views/");
 
     CROW_ROUTE(app, "/")
