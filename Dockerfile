@@ -26,6 +26,7 @@ COPY --from=builder /app/views/ ./views/
 COPY --from=builder /app/static/ ./static/
 COPY --from=builder /app/bin/shurlx .
 COPY --from=builder /usr/lib/ /usr/lib/
+RUN mkdir db
 
 EXPOSE ${PORT}
 

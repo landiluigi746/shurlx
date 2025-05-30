@@ -14,7 +14,7 @@ namespace shurlx::Database
     // clang-format off
     static thread_local bool s_Initialized = false;
     static thread_local auto s_DbStorage = make_storage(
-        "/app/db/shurlx.db",
+        "db/shurlx.db",
         make_table("URLs",
             make_column("original_url", &URLModel::OriginalURL, primary_key()),
             make_column("short_code", &URLModel::ShortCode, unique())
