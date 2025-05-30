@@ -12,3 +12,8 @@ services:
       - MAX_REGISTER_ATTEMPTS=${MAX_REGISTER_ATTEMPTS}
       - REQUESTS_PER_MINUTE=${REQUESTS_PER_MINUTE}
       - BASE_URL=${BASE_URL}
+    volumes:
+      - sqlite_vol:/app/db
+
+volumes:
+  sqlite_vol:
