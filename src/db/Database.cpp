@@ -36,7 +36,7 @@ namespace shurlx::Database
         }
         catch (const std::exception& e)
         {
-            std::println("[fatal]: Database::Init() : ", e.what());
+            std::println("[fatal]: Database::Init() : {}", e.what());
             std::abort();
         }
     }
@@ -67,7 +67,7 @@ namespace shurlx::Database
             }
             catch (const std::exception& e)
             {
-                std::println("[error]: Database::RegisterURL() : ", e.what());
+                std::println("[error]: Database::RegisterURL() : {}", e.what());
                 return {Result::Failure, ""};
             }
         }
@@ -91,7 +91,7 @@ namespace shurlx::Database
         }
         catch (const std::exception& e)
         {
-            std::println("[error]: Database::GetOriginalURL() : ", e.what());
+            std::println("[error]: Database::GetOriginalURL() : {}", e.what());
             return {Result::Failure, ""};
         }
     }
