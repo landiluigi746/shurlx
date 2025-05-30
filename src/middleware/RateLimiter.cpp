@@ -24,10 +24,7 @@ namespace shurlx::Middleware
         ClientInfo& clientInfo = m_ClientMap[ip];
 
         if (now - clientInfo.LastSeen >= WINDOW_TIME)
-        {
             clientInfo.RequestsCount = 1;
-            clientInfo.LastSeen = now;
-        }
 
         // clang-format off
         if (clientInfo.RequestsCount > Config::REQUESTS_PER_MINUTE)
@@ -48,5 +45,6 @@ namespace shurlx::Middleware
         // clang-format on
 
         ++clientInfo.RequestsCount;
+        clientInfo.LastSeen = now;
     }
 } // namespace shurlx::Middleware
