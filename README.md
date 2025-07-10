@@ -3,6 +3,8 @@
 shurlx is a lightweight and high-performance URL shortener built with C++,
 leveraging the web framework [Crow](https://crowcpp.org/) and [SQLite](https://www.sqlite.org/) for the database. It provides a template-based frontend powered by Crow's [Mustache](https://mustache.github.io/) integration, alongside [HTMX](https://htmx.org/) and [Tailwind CSS](https://tailwindcss.com/) for a minimalist, smooth and interactive user experience.
 
+![Screenshot](screenshots/example.png)
+
 ## Getting started
 
 **Dependencies**
