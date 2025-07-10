@@ -37,6 +37,11 @@ namespace shurlx::Middleware
                 std::to_string(std::chrono::duration_cast<std::chrono::seconds>(WINDOW_TIME).count())
             );
 
+            res.add_header(
+                "HX-Refresh",
+                "true"
+            );
+
             res.end(invalidHTML.render({
                 {"message", "Too many requests. Please try again later"}
             }).dump());
